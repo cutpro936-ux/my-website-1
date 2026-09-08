@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mom's Touch — Mother & Baby Massage Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#173626;
+    --forest-deep:#0e2419;
+    --cream:#faf5e9;
+    --cream-2:#f2ead7;
+    --gold:#b98b2e;
+    --gold-soft:#d9b46a;
+    --ink:#22301f;
+    --line: rgba(23,54,38,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  h1,h2,h3,.script{
+    font-family:'Cormorant Garamond', serif;
+    color:var(--forest);
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* leaf divider */
+  .leafline{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    color:var(--gold); margin:22px 0;
+  }
+  .leafline svg{width:20px; height:20px;}
+  .leafline .rule{width:60px; height:1px; background:var(--gold-soft);}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,245,233,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem; font-weight:600; color:var(--forest);
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand svg{width:30px;height:30px;}
+  nav.links{display:flex; gap:32px; font-size:0.95rem;}
+  nav.links a{text-decoration:none; color:var(--forest); position:relative; padding-bottom:3px;}
+  nav.links a:hover{color:var(--gold);}
+  .nav-cta{
+    background:var(--forest); color:var(--cream); padding:10px 20px;
+    border-radius:2px; text-decoration:none; font-size:0.9rem; letter-spacing:.02em;
+    border:1px solid var(--forest);
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--forest-deep);}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.6rem; color:var(--forest); cursor:pointer;}
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(1100px 500px at 15% -10%, #234a34 0%, var(--forest) 45%, var(--forest-deep) 100%);
+    color:var(--cream);
+    padding:90px 0 70px;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center;
+  }
+  .hero-eyebrow{
+    color:var(--gold-soft); font-size:0.95rem; font-style:italic;
+    font-family:'Cormorant Garamond', serif;
+  }
+  .hero h1{
+    font-size:3.6rem; color:var(--cream); font-weight:600; line-height:1.06;
+    margin:10px 0 18px;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold-soft);}
+  .hero p.tag{
+    font-size:1.15rem; max-width:460px; color:#e7e2d3; margin-bottom:28px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold); color:var(--forest-deep); padding:14px 28px;
+    text-decoration:none; font-weight:500; border-radius:2px;
+    border:1px solid var(--gold);
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn-primary:hover{background:var(--gold-soft); transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--cream); padding:14px 26px; text-decoration:none;
+    border:1px solid rgba(250,245,233,0.4); border-radius:2px;
+  }
+  .btn-ghost:hover{border-color:var(--cream);}
+
+  .hero-art{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-art svg{width:100%; max-width:340px;}
+
+  .hero-badges{
+    display:flex; gap:26px; margin-top:46px; flex-wrap:wrap;
+  }
+  .hero-badges div{font-size:0.85rem; color:#d8d2bf; display:flex; align-items:center; gap:8px;}
+  .hero-badges svg{width:16px;height:16px; color:var(--gold-soft); flex:none;}
+
+  /* SECTION HEADINGS */
+  .section{padding:78px 0;}
+  .section.alt{background:var(--cream-2);}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 46px;}
+  .section-head .kicker{
+    font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold);
+    font-size:1.05rem;
+  }
+  .section-head h2{font-size:2.5rem; margin-top:6px;}
+  .section-head p{color:#5b6459; margin-top:14px; font-size:1.02rem;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .about-grid h2{font-size:2.3rem; margin-bottom:16px;}
+  .about-grid p{color:#4b5548; margin-bottom:14px;}
+  .about-points{list-style:none; padding:0; margin:22px 0 0;}
+  .about-points li{
+    display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:0.98rem; color:var(--ink);
+  }
+  .about-points svg{width:20px;height:20px; color:var(--gold); flex:none; margin-top:2px;}
+  .about-visual{
+    background:var(--forest); border-radius:4px; padding:44px 30px;
+    color:var(--cream); position:relative;
+  }
+  .about-visual .quote{font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-style:italic; line-height:1.4;}
+  .about-visual .quote-by{margin-top:16px; color:var(--gold-soft); font-size:0.9rem;}
+  .about-visual svg.deco{position:absolute; top:-18px; left:24px; width:44px; height:44px; color:var(--gold);}
+
+  /* SERVICES */
+  .services-table{
+    width:100%; border-collapse:collapse; background:var(--cream);
+    border:1px solid var(--line); font-size:0.98rem;
+  }
+  .services-table thead th{
+    text-align:left; background:var(--forest); color:var(--cream);
+    padding:14px 20px; font-weight:500; font-size:0.9rem; letter-spacing:.02em;
+  }
+  .services-table thead th:last-child, .services-table tbody td:last-child{text-align:right;}
+  .services-table tbody td{padding:14px 20px; border-bottom:1px solid var(--line);}
+  .services-table tbody tr:nth-child(even){background:var(--cream-2);}
+  .services-table tbody tr:hover{background:#efe6cf;}
+  .price{color:var(--gold); font-weight:600;}
+  .table-wrap{overflow-x:auto; border-radius:4px;}
+
+  /* WHY GRID */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:10px;
+  }
+  .why-card{
+    background:var(--cream); border:1px solid var(--line); padding:26px 20px;
+    text-align:center; border-radius:3px;
+  }
+  .why-card svg{width:30px; height:30px; color:var(--gold); margin-bottom:12px;}
+  .why-card h3{font-size:1.15rem; font-weight:600; margin-bottom:6px;}
+  .why-card p{font-size:0.88rem; color:#5b6459; margin:0;}
+
+  /* PACKAGES */
+  .pkg-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .pkg-card{
+    background:var(--forest); color:var(--cream); border-radius:4px; padding:30px 24px;
+    display:flex; flex-direction:column; position:relative; overflow:hidden;
+  }
+  .pkg-card.featured{background:var(--gold); color:var(--forest-deep);}
+  .pkg-card h3{color:inherit; font-size:1.3rem; margin-bottom:10px;}
+  .pkg-card p.desc{font-size:0.9rem; color:inherit; opacity:.85; flex:1; margin-bottom:20px;}
+  .pkg-price{font-family:'Cormorant Garamond', serif; font-size:2rem; font-weight:600;}
+  .pkg-price span{font-size:0.95rem; font-weight:400; opacity:.8;}
+  .pkg-tag{
+    position:absolute; top:14px; right:14px; background:var(--gold); color:var(--forest-deep);
+    font-size:0.7rem; padding:3px 10px; border-radius:20px; letter-spacing:.03em;
+  }
+  .pkg-card.featured .pkg-tag{background:var(--forest); color:var(--cream);}
+
+  /* HOME VISIT STRIP */
+  .strip{
+    background:var(--forest-deep); color:var(--cream); padding:40px 0;
+  }
+  .strip .wrap{display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;}
+  .strip-text{display:flex; gap:18px; align-items:flex-start; max-width:640px;}
+  .strip-text svg{width:34px; height:34px; color:var(--gold-soft); flex:none;}
+  .strip-text h3{color:var(--cream); font-size:1.4rem; margin-bottom:6px;}
+  .strip-text p{margin:0; font-size:0.92rem; color:#cfc9b6;}
+
+  /* CONTACT */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .contact-card{
+    background:var(--cream); border:1px solid var(--line); border-radius:4px; padding:36px;
+  }
+  .contact-row{
+    display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row svg{width:22px;height:22px; color:var(--gold); flex:none;}
+  .contact-row a{text-decoration:none; color:var(--ink);}
+  .contact-row .label{font-size:0.78rem; text-transform:uppercase; letter-spacing:.06em; color:#8a9083; display:block;}
+  .socials{display:flex; gap:14px; margin-top:24px;}
+  .socials a{
+    width:38px; height:38px; border-radius:50%; background:var(--forest); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+  }
+  .socials a:hover{background:var(--gold); color:var(--forest-deep);}
+  .book-panel{
+    background:var(--forest); color:var(--cream); border-radius:4px; padding:36px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .book-panel h3{color:var(--cream); font-size:1.7rem; margin-bottom:12px;}
+  .book-panel p{color:#d8d2bf; margin-bottom:24px; font-size:0.95rem;}
+
+  /* FOOTER */
+  footer{
+    background:var(--forest-deep); color:#cfc9b6; padding:34px 0; text-align:center; font-size:0.85rem;
+  }
+  footer .script{color:var(--gold-soft); font-size:1.3rem; margin-bottom:6px; display:block;}
+
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .menu-toggle{display:block;}
+    .hero .wrap{grid-template-columns:1fr; text-align:center;}
+    .hero h1{font-size:2.6rem;}
+    .hero p.tag{margin-left:auto; margin-right:auto;}
+    .hero-actions{justify-content:center;}
+    .hero-badges{justify-content:center;}
+    .hero-art{order:-1; margin-bottom:10px;}
+    .about-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .pkg-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    .strip .wrap{flex-direction:column; text-align:left;}
+  }
+  @media (max-width:520px){
+    .why-grid{grid-template-columns:1fr;}
+    .pkg-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.1rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 3c-2.8 0-4.5 2.2-4.5 4.6 0 3.6 3 5.7 4.5 8.4 1.5-2.7 4.5-4.8 4.5-8.4C12.5 5.2 10.8 3 8 3z"/><circle cx="15.5" cy="8" r="1.3"/></svg>
+      Mom's Touch
+    </div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/916392783955" target="_blank" rel="noopener">Book Now</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Mother &amp; Baby Massage Care</div>
+      <h1>A gentler way to<br>care for <em>mother and baby</em></h1>
+      <p class="tag">Nurturing touch, natural care, and a stronger bond — delivered in the comfort of your own home.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/916392783955" target="_blank" rel="noopener">Book a Session on WhatsApp</a>
+        <a class="btn-ghost" href="#services">See Services &amp; Rates</a>
+      </div>
+      <div class="hero-badges">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>100% Natural &amp; Safe Oils</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>Trained Therapists</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>Home Visits Available</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 300 320" fill="none">
+        <path d="M150 30c-55 0-90 45-90 92 0 66 60 96 90 168 30-72 90-102 90-168 0-47-35-92-90-92z" stroke="#d9b46a" stroke-width="1.5" opacity="0.5"/>
+        <g stroke="#faf5e9" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M118 96c0-16 13-29 30-29s30 13 30 29c0 20-15 30-30 46-15-16-30-26-30-46z"/>
+          <path d="M100 150c10-8 24-12 48-12s38 4 48 12"/>
+          <path d="M96 158c-6 30 4 62 30 78 14 9 40 9 54 0 26-16 36-48 30-78"/>
+          <ellipse cx="148" cy="214" rx="22" ry="18"/>
+          <path d="M126 214c0-6 4-9 8-9M170 214c0-6-4-9-8-9"/>
+        </g>
+        <g stroke="#d9b46a" stroke-width="1.3" fill="none" opacity="0.85">
+          <path d="M70 260c20-4 34 6 40 20"/>
+          <path d="M70 260c8 10 8 20 2 30"/>
+          <path d="M230 260c-20-4-34 6-40 20"/>
+          <path d="M230 260c-8 10-8 20-2 30"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="hero-eyebrow" style="color:var(--gold);">Who we are</div>
+      <h2>Relaxed mom. Happy baby.<br>Healthy family.</h2>
+      <p>Mom's Touch brings professional pregnancy, postpartum and baby massage therapy to your doorstep. Every session is designed around what a new mother's body — and a new baby — actually need: gentle pressure, safe natural oils, and a calm space to recover.</p>
+      <p>Our therapists are trained specifically in maternal and infant massage, so you're never guessing whether a technique is safe for this stage of your journey.</p>
+      <ul class="about-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>Relieves stress, fatigue and muscle tension</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>Improves circulation and supports postnatal recovery</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l3-3 4 4L19 4l3 3"/></svg>Strengthens the mother–baby bond through touch</li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <svg class="deco" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 2 3 6 3 11c0 6 5 8 9 13 4-5 9-7 9-13 0-5-4-9-9-9z"/></svg>
+      <p class="quote">"Every mom and baby deserve the best — hygienic, professional care, without ever leaving home."</p>
+      <p class="quote-by">— The Mom's Touch Promise</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Rate List</div>
+      <h2>Our Services</h2>
+      <p>All sessions available at your home. Duration and pricing below.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="services-table">
+        <thead>
+          <tr><th>Service</th><th>Duration</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pregnancy Massage</td><td>60 min</td><td class="price">₹1,099</td></tr>
+          <tr><td>Pregnancy Relaxation Massage</td><td>90 min</td><td class="price">₹1,499</td></tr>
+          <tr><td>Postpartum / Mother Massage</td><td>60 min</td><td class="price">₹1,199</td></tr>
+          <tr><td>Postpartum Full Body Care</td><td>90 min</td><td class="price">₹1,599</td></tr>
+          <tr><td>Baby Massage</td><td>30–40 min</td><td class="price">₹799</td></tr>
+          <tr><td>Mother + Baby Massage</td><td>75–90 min</td><td class="price">₹1,599</td></tr>
+          <tr><td>Full Body Relaxation Massage</td><td>60 min</td><td class="price">₹1,099</td></tr>
+          <tr><td>Full Body Relaxation Massage</td><td>90 min</td><td class="price">₹1,499</td></tr>
+          <tr><td>Head + Shoulder Massage</td><td>30 min</td><td class="price">₹599</td></tr>
+          <tr><td>Foot + Leg Relaxation</td><td>30 min</td><td class="price">₹599</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Because every mom &amp; baby deserve the best</div>
+      <h2>Why Families Choose Us</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 4 1 5 3 1-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <h3>Stress &amp; Fatigue Relief</h3>
+        <p>Gentle techniques that ease tension built up through pregnancy and new motherhood.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c4 4 7 8 7 12a7 7 0 11-14 0c0-4 3-8 7-12z"/></svg>
+        <h3>Better Circulation</h3>
+        <p>Improves blood flow and helps with the swelling that often comes with recovery.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15c2-6 6-9 8-9-2 4-2 8 0 10 3 2 7 1 9-2-1 5-6 8-11 7-3-1-5-3-6-6z"/></svg>
+        <h3>Better Sleep</h3>
+        <p>A calming routine that helps both mother and baby settle into deeper rest.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.5-4 4-6 7-6s5.5 2 7 6"/></svg>
+        <h3>Postnatal Recovery</h3>
+        <p>Supports the body's natural healing process after delivery.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 4 1 5 3 1-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <h3>Stronger Bond</h3>
+        <p>Touch therapy that deepens the emotional connection between mother and baby.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 6 5 9 5 13a7 7 0 0014 0c0-4-3-7-7-11z"/></svg>
+        <h3>100% Natural Oils</h3>
+        <p>Safe, chemical-free oils suited for sensitive postnatal and infant skin.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/></svg>
+        <h3>Trained Therapists</h3>
+        <p>Experienced specifically in maternal and infant massage techniques.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l6 6L20 6"/></svg>
+        <h3>Hygienic &amp; Professional</h3>
+        <p>Clean tools, sanitised setup and a professional standard every visit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="packages">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Special Packages</div>
+      <h2>Save More with a Package</h2>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <h3>New Mom Care</h3>
+        <p class="desc">3 sessions × 60 min mother massage.</p>
+        <div class="pkg-price">₹2,599</div>
+      </div>
+      <div class="pkg-card featured">
+        <span class="pkg-tag">Popular</span>
+        <h3>Mom &amp; Baby Care</h3>
+        <p class="desc">3 mother massage + 3 baby massage sessions.</p>
+        <div class="pkg-price">₹4,199</div>
+      </div>
+      <div class="pkg-card">
+        <h3>Premium Postnatal Care</h3>
+        <p class="desc">5 mother massage sessions + 5 baby massage sessions.</p>
+        <div class="pkg-price">₹5,749</div>
+      </div>
+      <div class="pkg-card">
+        <h3>Monthly Mom &amp; Baby Care</h3>
+        <p class="desc">10 mother/baby sessions. Advance booking required.</p>
+        <div class="pkg-price">₹7,999</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-text">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M9 19v-6h6v6"/></svg>
+      <div>
+        <h3>Home Visit Available</h3>
+        <p>Nearby areas included. Additional travel charges may apply for distant locations.</p>
+      </div>
+    </div>
+    <a class="btn-primary" href="https://wa.me/916392783955" target="_blank" rel="noopener">Check Availability</a>
+  </div>
+</div>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Get in Touch</div>
+      <h2>Book Your Session</h2>
+      <p>For a healthier, happier you and your baby.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L8 9.9a16 16 0 006 6l1.4-1.4a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.8 2.2z"/></svg>
+          <div><span class="label">Call / Mobile</span><a href="tel:+916392783955">+91 63927 83955</a></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2z"/><path d="M9 18h6"/></svg>
+          <div><span class="label">WhatsApp</span><a href="https://wa.me/916392783955" target="_blank" rel="noopener">+91 63927 83955</a></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
+          <div><span class="label">Email</span><a href="mailto:momstouch0777@gmail.com">momstouch0777@gmail.com</a></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+          <div><span class="label">Instagram</span><a href="https://instagram.com/moms_touch0777" target="_blank" rel="noopener">@moms_touch0777</a></div>
+        </div>
+        <div class="socials">
+          <a href="https://instagram.com/moms_touch0777" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.6"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 8h-2a2 2 0 00-2 2v10M9 13h4"/><path d="M15 3H6a3 3 0 00-3 3v12a3 3 0 003 3h9a3 3 0 003-3V6a3 3 0 00-3-3z"/></svg>
+          </a>
+          <a href="https://wa.me/916392783955" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2z"/><path d="M9 18h6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="book-panel">
+        <h3>Ready to feel cared for?</h3>
+        <p>Message us on WhatsApp with your city and preferred date — we'll confirm your therapist and time within the day.</p>
+        <a class="btn-primary" style="align-self:flex-start;" href="https://wa.me/916392783955" target="_blank" rel="noopener">Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="script">Mom's Touch</span>
+  Because You Matter · Mother &amp; Baby Massage Care
+</footer>
+
+</body>
+</html>
